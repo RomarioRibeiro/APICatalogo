@@ -1,8 +1,8 @@
 [
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriaController",
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
     "Method": "Get",
-    "RelativePath": "Categoria",
+    "RelativePath": "Categorias",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -20,9 +20,9 @@
     ]
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriaController",
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
     "Method": "Post",
-    "RelativePath": "Categoria",
+    "RelativePath": "Categorias",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -36,9 +36,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriaController",
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
     "Method": "Get",
-    "RelativePath": "Categoria/{id}",
+    "RelativePath": "Categorias/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -63,9 +63,9 @@
     "EndpointName": "ObterCategorias"
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriaController",
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
     "Method": "Put",
-    "RelativePath": "Categoria/{id}",
+    "RelativePath": "Categorias/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -84,9 +84,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriaController",
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
     "Method": "Delete",
-    "RelativePath": "Categoria/{id}",
+    "RelativePath": "Categorias/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -100,9 +100,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriaController",
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
     "Method": "GetCategoriaProdutos",
-    "RelativePath": "Categoria/produtos",
+    "RelativePath": "Categorias/produtos",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -110,6 +110,58 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiCatalogo.Models.CategoriaModel, ApiCatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
+    "Method": "GetSaudacao",
+    "RelativePath": "Categorias/saudacao",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
+    "Method": "GetSaudacaoSegundo",
+    "RelativePath": "Categorias/saudacao/segundo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nome",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
         "MediaTypes": [
           "text/plain",
           "application/json",

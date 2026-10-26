@@ -1,4 +1,5 @@
 using ApiCatalogo.Context;
+using ApiCatalogo.Services;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using System.Text.Json.Serialization;
@@ -19,6 +20,10 @@ Console.WriteLine($"Conexão carregada: {mysqlConnetion}");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(mysqlConnetion, ServerVersion.AutoDetect(mysqlConnetion)));
+
+
+builder.Services.AddTransient<IMeuServices, MeuServices>();
+
 
 var app = builder.Build();
 

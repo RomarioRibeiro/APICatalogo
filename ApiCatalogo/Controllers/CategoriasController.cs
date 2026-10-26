@@ -1,5 +1,6 @@
 ﻿using ApiCatalogo.Context;
 using ApiCatalogo.Models;
+using ApiCatalogo.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,14 +10,14 @@ namespace ApiCatalogo.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CategoriaController : ControllerBase
+    public class CategoriasController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public CategoriaController(AppDbContext context)
+        public CategoriasController(AppDbContext context)
         {
             _context = context;
-        }
+        }   
 
         [HttpGet]
         public ActionResult<IEnumerable<CategoriaModel>> Get()
@@ -87,7 +88,7 @@ namespace ApiCatalogo.Controllers
             }
             _context.Categorias.Remove(categoria);
             _context.SaveChanges();
-            return Ok(categoria);  
+            return NoContent(); //Ok(categoria);  
         }
     }
 }

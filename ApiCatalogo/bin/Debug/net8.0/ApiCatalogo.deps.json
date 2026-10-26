@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "9.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "9.0.0",
+          "Scalar.AspNetCore": "2.18.3",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
@@ -537,6 +538,14 @@
           }
         }
       },
+      "Scalar.AspNetCore/2.18.3": {
+        "runtime": {
+          "lib/net8.0/Scalar.AspNetCore.dll": {
+            "assemblyVersion": "2.18.3.0",
+            "fileVersion": "2.18.3.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -912,6 +921,13 @@
       "sha512": "sha512-cl7S4s6CbJno0LjNxrBHNc2xxmCliR5i40ATPZk/eTywVaAbHCbdc9vbGc3QThvwGjHqrDHT8vY9m1VF/47o0g==",
       "path": "pomelo.entityframeworkcore.mysql/9.0.0",
       "hashPath": "pomelo.entityframeworkcore.mysql.9.0.0.nupkg.sha512"
+    },
+    "Scalar.AspNetCore/2.18.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6KXPOkCNnoZTXBl8GVNxq/zpS9UdGnz1a23EWy3CEiwYbZKQ5gi2APZ5mBruXcdXIr+ZXSZYiwX81UagjKFxeg==",
+      "path": "scalar.aspnetcore/2.18.3",
+      "hashPath": "scalar.aspnetcore.2.18.3.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",

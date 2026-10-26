@@ -30,7 +30,7 @@ namespace ApiCatalogo.Controllers
             return produtos;
         }
 
-        [HttpGet("{id:int}", Name = "ObterProdutos")]
+        [HttpGet("{id:int:min(1)}", Name = "ObterProdutos")]
         public async Task<ActionResult<ProdutoModel>> Get(int id)
         {
             var produto = await _context.Produtos.FirstOrDefaultAsync(obj => obj.ProdutoId == id);
