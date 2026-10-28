@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "D:\\Temp\\C#\\APICatalogo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\logging\\customerlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\logging\\customerlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\logging\\customloggerprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\logging\\customloggerprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\logging\\customloggerproviderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\logging\\customloggerproviderconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|d:\\temp\\c#\\apicatalogo\\apicatalogo\\filters\\apiexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FDE6CABE-A95D-4718-9269-8022744E648C}|ApiCatalogo\\ApiCatalogo.csproj|solutionrelative:apicatalogo\\filters\\apiexceptionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,71 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "ApiCatalogo\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Properties\\launchSettings.json",
-              "RelativeToolTip": "ApiCatalogo\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-10-28T13:24:13.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CustomerLogger.cs",
-              "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Logging\\CustomerLogger.cs",
-              "RelativeDocumentMoniker": "ApiCatalogo\\Logging\\CustomerLogger.cs",
-              "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Logging\\CustomerLogger.cs",
-              "RelativeToolTip": "ApiCatalogo\\Logging\\CustomerLogger.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAuwCEAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-28T13:10:24.825Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CustomLoggerProvider.cs",
-              "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Logging\\CustomLoggerProvider.cs",
-              "RelativeDocumentMoniker": "ApiCatalogo\\Logging\\CustomLoggerProvider.cs",
-              "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Logging\\CustomLoggerProvider.cs",
-              "RelativeToolTip": "ApiCatalogo\\Logging\\CustomLoggerProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-28T12:52:32.068Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CustomLoggerProviderConfiguration.cs",
-              "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Logging\\CustomLoggerProviderConfiguration.cs",
-              "RelativeDocumentMoniker": "ApiCatalogo\\Logging\\CustomLoggerProviderConfiguration.cs",
-              "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Logging\\CustomLoggerProviderConfiguration.cs",
-              "RelativeToolTip": "ApiCatalogo\\Logging\\CustomLoggerProviderConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-28T12:50:48.912Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "CategoriasController.cs",
               "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Controllers\\CategoriasController.cs",
               "RelativeDocumentMoniker": "ApiCatalogo\\Controllers\\CategoriasController.cs",
               "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Controllers\\CategoriasController.cs",
               "RelativeToolTip": "ApiCatalogo\\Controllers\\CategoriasController.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAYwEAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAgwFUAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-28T12:08:32.367Z",
+              "WhenOpened": "2026-10-28T14:52:49.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Program.cs",
+              "RelativeDocumentMoniker": "ApiCatalogo\\Program.cs",
+              "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Program.cs",
+              "RelativeToolTip": "ApiCatalogo\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-28T14:48:06.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApiExceptionFilter.cs",
+              "DocumentMoniker": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Filters\\ApiExceptionFilter.cs",
+              "RelativeDocumentMoniker": "ApiCatalogo\\Filters\\ApiExceptionFilter.cs",
+              "ToolTip": "D:\\Temp\\C#\\APICatalogo\\ApiCatalogo\\Filters\\ApiExceptionFilter.cs",
+              "RelativeToolTip": "ApiCatalogo\\Filters\\ApiExceptionFilter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-28T14:40:31.258Z",
               "EditorCaption": ""
             }
           ]

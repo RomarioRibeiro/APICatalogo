@@ -13,10 +13,12 @@ namespace ApiCatalogo.Controllers
     {
 
         private readonly AppDbContext _context;
+        private readonly ILogger<ProdutosController> _logger; 
 
-        public ProdutosController(AppDbContext _Dbcontext)
+        public ProdutosController(AppDbContext _Dbcontext, ILogger<ProdutosController> logger)
         {
             _context = _Dbcontext;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -25,6 +27,7 @@ namespace ApiCatalogo.Controllers
             var produtos = await _context.Produtos.AsNoTracking().ToListAsync();
             if (produtos is null)
             {
+                _logger.LogWarning("Produtos não encontrados....");
                 return NotFound("Produtos não encontrados...");
             }
             return produtos;
@@ -36,6 +39,7 @@ namespace ApiCatalogo.Controllers
             var produto = await _context.Produtos.FirstOrDefaultAsync(obj => obj.ProdutoId == id);
             if (produto is null)
             {
+                _logger.LogWarning($"Produto do codigo {id} não encontrado....");
                return NotFound(string.Format($"Produto do codigo {id} não encontrado....."));
             }
             return produto;
@@ -44,7 +48,10 @@ namespace ApiCatalogo.Controllers
         public ActionResult Post(ProdutoModel produto)
         {
             if (produto is null)
-                return BadRequest();
+            {
+                _logger.LogWarning("Dados Invalidos..");
+                return BadRequest("Dados Invalidos...");
+            }
 
             _context.Produtos.Add(produto);
             _context.SaveChanges();
@@ -56,7 +63,8 @@ namespace ApiCatalogo.Controllers
         {
             if (id != produto.ProdutoId)
             {
-                return BadRequest();
+                _logger.LogWarning("Dados Invalidos..");
+                return BadRequest("Dado Invalidos..");
             }
 
             _context.Entry(produto).State = EntityState.Modified;
@@ -72,6 +80,7 @@ namespace ApiCatalogo.Controllers
 
             if(produto is null)
             {
+                _logger.LogWarning($"Produto do codigo {id} não encontrado....");
                 return NotFound(string.Format($"Produto do codigo {id} não encontrado..."));
             }
 
