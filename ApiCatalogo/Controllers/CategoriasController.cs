@@ -1,6 +1,6 @@
 ﻿using ApiCatalogo.Context;
+using ApiCatalogo.Filters;
 using ApiCatalogo.Models;
-using ApiCatalogo.Services;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,18 +13,22 @@ namespace ApiCatalogo.Controllers
     public class CategoriasController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly ILogger<CategoriasController> _logger;
 
-        public CategoriasController(AppDbContext context)
+        public CategoriasController(AppDbContext context, ILogger<CategoriasController> logger)
         {
             _context = context;
+            _logger = logger;
         }   
 
         [HttpGet]
+        [ServiceFilter(typeof(ApiLogginFilter))]
         public ActionResult<IEnumerable<CategoriaModel>> Get()
         {
             try
             {
                 var categorias = _context.Categorias.AsNoTracking().ToList();
+                _logger.LogInformation("================================= GET categorias ======================================");
                 if (categorias is null)
                 {
                     return NotFound("Categorias não encontradas...");
@@ -40,6 +44,9 @@ namespace ApiCatalogo.Controllers
         [HttpGet("produtos")]
         public ActionResult<IEnumerable<CategoriaModel>> GetCategoriaProdutos()
         {
+            _logger.LogInformation("================================= GET categorias/produtos ======================================");
+
+
             return _context.Categorias.Include(p => p.Produtos).AsNoTracking().ToList();
         }
 
@@ -47,6 +54,10 @@ namespace ApiCatalogo.Controllers
         public ActionResult<CategoriaModel> Get(int id)
         {
             var categoria =  _context.Categorias.FirstOrDefault(c => c.CategoriaId == id);
+
+            _logger.LogInformation($"================================= GET categorias/id {id} ======================================");
+
+
             if (categoria is null)
             {
                 return NotFound("Categoria não encontrada");

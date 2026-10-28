@@ -120,58 +120,6 @@
     ]
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
-    "Method": "GetSaudacao",
-    "RelativePath": "Categorias/saudacao",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "nome",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
-    "Method": "GetSaudacaoSegundo",
-    "RelativePath": "Categorias/saudacao/segundo",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "nome",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "ApiCatalogo.Controllers.ProdutosController",
     "Method": "Get",
     "RelativePath": "Produtos",

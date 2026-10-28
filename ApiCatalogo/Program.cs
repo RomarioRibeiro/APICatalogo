@@ -1,5 +1,7 @@
 using ApiCatalogo.Context;
-using ApiCatalogo.Services;
+using ApiCatalogo.Extensions;
+using ApiCatalogo.Filters;
+using ApiCatalogo.Logging;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using System.Text.Json.Serialization;
@@ -21,9 +23,23 @@ Console.WriteLine($"Conexão carregada: {mysqlConnetion}");
 builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseMySql(mysqlConnetion, ServerVersion.AutoDetect(mysqlConnetion)));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
-builder.Services.AddTransient<IMeuServices, MeuServices>();
+builder.Services.AddScoped<ApiLogginFilter>();
 
+
+builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
+{
+    LogLevel = LogLevel.Information
+}));
 
 var app = builder.Build();
 
@@ -32,7 +48,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.ConfigureExceptionHandler();
 }
+
+app.UseCors("AngularApp");
 
 app.UseHttpsRedirection();
 
