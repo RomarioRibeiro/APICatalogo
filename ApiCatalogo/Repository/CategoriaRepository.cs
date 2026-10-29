@@ -51,6 +51,11 @@ namespace ApiCatalogo.Repository
             _context.Categorias.Remove(categoria);
             _context.SaveChanges(); 
             return categoria;
-        }      
+        }
+
+        public IEnumerable<CategoriaModel> GetCategoriaProduto()
+        {
+            return _context.Categorias.Include(p => p.Produtos).AsNoTracking().ToList();
+        }
     }
 }

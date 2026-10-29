@@ -2,6 +2,7 @@ using ApiCatalogo.Context;
 using ApiCatalogo.Extensions;
 using ApiCatalogo.Filters;
 using ApiCatalogo.Logging;
+using ApiCatalogo.Repository;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using System.Text.Json.Serialization;
@@ -39,7 +40,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddScoped<ApiLogginFilter>();
-
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
 builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
 {

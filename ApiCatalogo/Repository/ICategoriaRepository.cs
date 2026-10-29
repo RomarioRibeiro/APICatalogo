@@ -1,4 +1,5 @@
 ﻿using ApiCatalogo.Models;
+using System.Collections;
 
 namespace ApiCatalogo.Repository
 {
@@ -13,6 +14,8 @@ namespace ApiCatalogo.Repository
         CategoriaModel Uptade(CategoriaModel categoria);
 
         CategoriaModel Delete(int id);
+
+        IEnumerable<CategoriaModel> GetCategoriaProduto();
 
     }
 }
