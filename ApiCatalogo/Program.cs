@@ -41,6 +41,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<ApiLogginFilter>();
 builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
 builder.Logging.AddProvider(new CustomLoggerProvider(new CustomLoggerProviderConfiguration
 {
