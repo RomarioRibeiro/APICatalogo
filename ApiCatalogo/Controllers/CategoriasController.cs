@@ -26,7 +26,7 @@ namespace ApiCatalogo.Controllers
         [ServiceFilter(typeof(ApiLogginFilter))]
         public ActionResult<IEnumerable<CategoriaModel>> Get()
         {         
-                var categorias = _categoriaRepository.GetCategorias();
+                var categorias = _categoriaRepository.GetAll();
             if (categorias is null)
                 {
                 _logger.LogWarning($"Categorias não encontradas...");
@@ -35,18 +35,11 @@ namespace ApiCatalogo.Controllers
                 return Ok(categorias);                  
         }
 
-        [HttpGet("produtos")]
-        public ActionResult<IEnumerable<CategoriaModel>> GetCategoriaProdutos()
-        {
-            var categorias =  _categoriaRepository.GetCategoriaProduto();
-
-            return Ok(categorias);
-        }
 
         [HttpGet("{id:int}", Name = "ObterCategorias")]
         public ActionResult<CategoriaModel> Get(int id)
         {
-            var categoria =  _categoriaRepository.GetCategoriaById(id);
+            var categoria =  _categoriaRepository.GetById(c => c.CategoriaId == id);
             if (categoria is null)
             {
                 _logger.LogWarning($"Categoria com id={id} não encontrada...");
@@ -75,20 +68,20 @@ namespace ApiCatalogo.Controllers
                 _logger.LogWarning($"Categoria com id={id} não encontrada...");
                 return BadRequest("Dados Inválidos");
             }
-            var categoriaAlterada = _categoriaRepository.Uptade(categoria);
+            var categoriaAlterada = _categoriaRepository.Update(categoria);
             return Ok(categoriaAlterada);
         }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
-            var categoria = _categoriaRepository.GetCategoriaById(id);
+            var categoria = _categoriaRepository.GetById(c => c.CategoriaId == id);
             if (categoria is null)
             {
                 _logger.LogWarning($"Categoria com id={id} não encontrada...");
                 return NotFound($"Categoria com id: {id} não encontrada...");
             }
-            _categoriaRepository.Delete(id);
+            _categoriaRepository.Delete(categoria);
             return NoContent(); //Ok(categoria);  
         }
     }

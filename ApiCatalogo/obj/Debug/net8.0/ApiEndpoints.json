@@ -100,26 +100,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
-    "Method": "GetCategoriaProdutos",
-    "RelativePath": "Categorias/produtos",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiCatalogo.Models.CategoriaModel, ApiCatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "ApiCatalogo.Controllers.ProdutosController",
     "Method": "Get",
     "RelativePath": "Produtos",
@@ -218,5 +198,31 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ApiCatalogo.Controllers.ProdutosController",
+    "Method": "GetProdutosPorCategoria",
+    "RelativePath": "Produtos/categorias/{categoriaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoriaId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiCatalogo.Models.ProdutoModel, ApiCatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

@@ -25,7 +25,7 @@ namespace ApiCatalogo.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ProdutoModel>> Get()
         {
-            var produtos =  _produtoRepository.GetProdutos().ToList();
+            var produtos = _produtoRepository.GetAll();
             if (produtos is null)
             {
                 _logger.LogWarning("Produtos não encontrados....");
@@ -37,7 +37,7 @@ namespace ApiCatalogo.Controllers
         [HttpGet("{id:int:min(1)}", Name = "ObterProdutos")]
         public ActionResult<ProdutoModel> Get(int id)
         {
-            var produto =  _produtoRepository.GetProduto(id);
+            var produto =  _produtoRepository.GetById(p => p.ProdutoId == id);
             if (produto is null)
             {
                 _logger.LogWarning($"Produto do codigo {id} não encontrado....");
@@ -66,32 +66,36 @@ namespace ApiCatalogo.Controllers
                 return BadRequest("Dado Invalidos..");
             }
 
-            var atualizado =  _produtoRepository.Update(produto);
+            var produtoAtualizado =  _produtoRepository.Update(produto);
 
-            if(atualizado)
-            {                
-                return Ok(produto);
-            }
-            else
-            {
-                _logger.LogWarning($"Produto do codigo {id} não encontrado....");
-                return NotFound(string.Format($"Produto do codigo {id} não encontrado..."));
-            }          
+           return Ok(produtoAtualizado);
         }
 
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
-          var deletado = _produtoRepository.Delete(id);
-            if(deletado)
-            {
-                return Ok($"Produto do codigo {id} deletado com sucesso...");
-            }
-            else
-            {
-                _logger.LogWarning($"Produto do codigo {id} não encontrado....");
-                return NotFound($"Produto do codigo {id} não encontrado...");
-            }
+          var deletado = _produtoRepository.GetById(p => p.ProdutoId == id);
+           
+            if (deletado is null)
+                {
+                    _logger.LogWarning($"Produto do codigo {id} não encontrado....");
+                    return NotFound($"Produto do codigo {id} não encontrado.....");
+                }
+                _produtoRepository.Delete(deletado);
+                return NoContent();
         }
+
+        [HttpGet("categorias/{categoriaId:int}")]
+        public ActionResult<IEnumerable<ProdutoModel>> GetProdutosPorCategoria(int categoriaId)
+        {
+            var produtos = _produtoRepository.GetProdutosPorCategoria(categoriaId);
+            if (produtos is null)
+            {
+                _logger.LogWarning($"Produtos da categoria {categoriaId} não encontrados....");
+                return NotFound($"Produtos da categoria {categoriaId} não encontrados.....");
+            }
+            return Ok(produtos);
+        }
+
     }
 }
