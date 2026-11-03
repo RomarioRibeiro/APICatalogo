@@ -1,5 +1,6 @@
 ﻿using ApiCatalogo.Context;
 using ApiCatalogo.DTOs;
+using ApiCatalogo.DTOs.Mappings;
 using ApiCatalogo.Filters;
 using ApiCatalogo.Models;
 using ApiCatalogo.Repository;
@@ -33,14 +34,8 @@ namespace ApiCatalogo.Controllers
                 _logger.LogWarning($"Categorias não encontradas...");
                     return NotFound("Categorias não encontradas...");
                 }
-
-            var categoriasDTO = categorias.Select(c => new CategoriaDTO
-            {
-                CategoriaId = c.CategoriaId,
-                Nome = c.Nome,
-                ImagemUrl = c.ImagemUrl
-            });
-                return Ok(categoriasDTO);                  
+            var categoriasDTO = categorias.ToCategoriaDTOList();
+            return Ok(categoriasDTO);                  
         }
 
 
@@ -54,13 +49,7 @@ namespace ApiCatalogo.Controllers
                 return NotFound("Categoria não encontrada");
             }
 
-            var categoriaDTO = new CategoriaDTO
-            {
-                CategoriaId = categoria.CategoriaId,
-                Nome = categoria.Nome,
-                ImagemUrl = categoria.ImagemUrl
-            };
-
+            var categoriaDTO = categoria.ToCategoriaDTO();
             return Ok(categoriaDTO);
         }
 
@@ -73,20 +62,11 @@ namespace ApiCatalogo.Controllers
                 return BadRequest("Dados Inválidos");
             }
 
-            var categoria = new CategoriaModel
-            {
-                Nome = categoriaDTO.Nome,
-                ImagemUrl = categoriaDTO.ImagemUrl
-            };
+            var categoria = categoriaDTO.ToCategoria();
             var categoriaCriada = _unitOfWork.CategoriaRepository.Create(categoria);
             _unitOfWork.Commit();
 
-            var categoriaCriadaDTO = new CategoriaDTO
-            {
-                CategoriaId = categoriaCriada.CategoriaId,
-                Nome = categoriaCriada.Nome,
-                ImagemUrl = categoriaCriada.ImagemUrl
-            };  
+            var categoriaCriadaDTO = categoria.ToCategoriaDTO();  
             return new CreatedAtRouteResult("ObterCategorias", new { id = categoriaCriadaDTO.CategoriaId }, categoriaCriadaDTO);
         }
 
@@ -98,21 +78,11 @@ namespace ApiCatalogo.Controllers
                 _logger.LogWarning($"Categoria com id={id} não encontrada...");
                 return BadRequest("Dados Inválidos");
             }
-            var categoria = new CategoriaModel
-            {
-                CategoriaId = categoriaDTO.CategoriaId,
-                Nome = categoriaDTO.Nome,
-                ImagemUrl = categoriaDTO.ImagemUrl
-            };
+            var categoria = categoriaDTO.ToCategoria();
             var categoriaAlterada = _unitOfWork.CategoriaRepository.Update(categoria);
             _unitOfWork.Commit();
 
-            var categoriaAlteradaDTO = new CategoriaDTO
-            {
-                CategoriaId = categoriaAlterada.CategoriaId,
-                Nome = categoriaAlterada.Nome,
-                ImagemUrl = categoriaAlterada.ImagemUrl
-            };
+            var categoriaAlteradaDTO = categoria.ToCategoriaDTO();
             return Ok(categoriaAlteradaDTO);
         }
 
@@ -127,12 +97,7 @@ namespace ApiCatalogo.Controllers
             }
             _unitOfWork.CategoriaRepository.Delete(categoria);
             _unitOfWork.Commit();
-            var categoriaDTO = new CategoriaDTO
-            {
-                CategoriaId = categoria.CategoriaId,
-                Nome = categoria.Nome,
-                ImagemUrl = categoria.ImagemUrl
-            };
+            var categoriaDTO = categoria.ToCategoriaDTO();
             return NoContent(); //Ok(categoria);  
         }
     }
