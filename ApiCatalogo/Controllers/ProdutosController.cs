@@ -1,6 +1,8 @@
 ﻿using ApiCatalogo.Context;
+using ApiCatalogo.DTOs;
 using ApiCatalogo.Models;
 using ApiCatalogo.Repository;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +17,17 @@ namespace ApiCatalogo.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<ProdutosController> _logger; 
+        private readonly IMapper _mapper;
 
-        public ProdutosController(IUnitOfWork unitOfWork, ILogger<ProdutosController> logger)
+        public ProdutosController(IUnitOfWork unitOfWork, ILogger<ProdutosController> logger, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProdutoModel>> Get()
+        public ActionResult<IEnumerable<ProdutoDTO>> Get()
         {
             var produtos = _unitOfWork.ProdutoRepository.GetAll();
             if (produtos is null)
@@ -31,11 +35,12 @@ namespace ApiCatalogo.Controllers
                 _logger.LogWarning("Produtos não encontrados....");
                 return NotFound("Produtos não encontrados...");
             }
+            var produtosDTO = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
             return Ok(produtos);
         }
 
         [HttpGet("{id:int:min(1)}", Name = "ObterProdutos")]
-        public ActionResult<ProdutoModel> Get(int id)
+        public ActionResult<ProdutoDTO> Get(int id)
         {
             var produto =  _unitOfWork.ProdutoRepository.GetById(p => p.ProdutoId == id);
             if (produto is null)
@@ -43,37 +48,45 @@ namespace ApiCatalogo.Controllers
                 _logger.LogWarning($"Produto do codigo {id} não encontrado....");
                return NotFound(string.Format($"Produto do codigo {id} não encontrado....."));
             }
+            var produtoDTO = _mapper.Map<ProdutoDTO>(produto);
             return Ok(produto);
         }
         [HttpPost]
-        public ActionResult Post(ProdutoModel produto)
+        public ActionResult<ProdutoDTO> Post(ProdutoDTO produtoDTO)
         {
-            if (produto is null)
+            if (produtoDTO is null)
             {
                 _logger.LogWarning("Dados Invalidos..");
                 return BadRequest("Dados Invalidos...");
             }
+            var produto = _mapper.Map<ProdutoModel>(produtoDTO);
             var novoProduto =  _unitOfWork.ProdutoRepository.Create(produto);
             _unitOfWork.Commit();   
-            return new CreatedAtRouteResult("ObterProdutos",new { id = novoProduto.ProdutoId }, novoProduto);
+
+            var novoProdutoDTO = _mapper.Map<ProdutoDTO>(novoProduto);
+            return new CreatedAtRouteResult("ObterProdutos",new { id = novoProdutoDTO.ProdutoId }, novoProdutoDTO);
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, ProdutoModel produto)
+        public ActionResult<ProdutoDTO> Put(int id, ProdutoDTO produtoDTO)
         {
-            if (id != produto.ProdutoId)
+            if (id != produtoDTO.ProdutoId)
             {
                 _logger.LogWarning("Dados Invalidos..");
                 return BadRequest("Dado Invalidos..");
             }
 
+           var produto =  _mapper.Map<ProdutoModel>(produtoDTO);
+
             var produtoAtualizado =  _unitOfWork.ProdutoRepository.Update(produto);
             _unitOfWork.Commit();
-            return Ok(produtoAtualizado);
+
+            var produtoAtualizadoDTO = _mapper.Map<ProdutoDTO>(produtoAtualizado);
+            return Ok(produtoAtualizadoDTO);
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id)
+        public ActionResult<ProdutoDTO> Delete(int id)
         {
           var deletado = _unitOfWork.ProdutoRepository.GetById(p => p.ProdutoId == id);
            
@@ -88,7 +101,7 @@ namespace ApiCatalogo.Controllers
         }
 
         [HttpGet("categorias/{categoriaId:int}")]
-        public ActionResult<IEnumerable<ProdutoModel>> GetProdutosPorCategoria(int categoriaId)
+        public ActionResult<IEnumerable<ProdutoDTO>> GetProdutosPorCategoria(int categoriaId)
         {
             var produtos = _unitOfWork.ProdutoRepository.GetProdutosPorCategoria(categoriaId);
             if (produtos is null)
@@ -96,7 +109,9 @@ namespace ApiCatalogo.Controllers
                 _logger.LogWarning($"Produtos da categoria {categoriaId} não encontrados....");
                 return NotFound($"Produtos da categoria {categoriaId} não encontrados.....");
             }
-            return Ok(produtos);
+
+            var produtosDTO = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
+            return Ok(produtosDTO);
         }
 
     }

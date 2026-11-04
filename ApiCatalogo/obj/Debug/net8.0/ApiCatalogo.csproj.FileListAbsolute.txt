@@ -274,3 +274,5 @@ D:\Temp\C#\APICatalogo\ApiCatalogo\obj\Debug\net8.0\ApiCatalogo.genruntimeconfig
 D:\Temp\C#\APICatalogo\ApiCatalogo\obj\Debug\net8.0\ref\ApiCatalogo.dll
 D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Scalar.AspNetCore.dll
 D:\Temp\C#\APICatalogo\ApiCatalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\AutoMapper.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
