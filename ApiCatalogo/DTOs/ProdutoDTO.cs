@@ -25,7 +25,7 @@ namespace ApiCatalogo.DTOs
         public decimal Preco { get; set; }
 
         [Required(ErrorMessage = "A imagem é  obrigatório!")]
-        [StringLength(300, MinimumLength = 10)]
+        [StringLength(300)]
         public string? ImagemUrl { get; set; }
 
         public int CategoriaId { get; set; }

@@ -25,12 +25,12 @@ public class ProdutoModel
     public decimal Preco { get; set; }
 
     [Required(ErrorMessage = "A imagem é  obrigatório!")]
-    [StringLength(300, MinimumLength = 10)]
+    [StringLength(300)]
     public string? ImagemUrl { get; set; }
 
     public float Estoque { get; set; }
 
-    public DateTime DataCadastro { get; set; } = DateTime.Now;
+    public DateTime DataCadastro { get; set; }
 
     public int CategoriaId { get; set; }
 

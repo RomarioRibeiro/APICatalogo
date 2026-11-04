@@ -4,6 +4,7 @@ using ApiCatalogo.Models;
 using ApiCatalogo.Repository;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -70,10 +71,16 @@ namespace ApiCatalogo.Controllers
         [HttpPut("{id:int}")]
         public ActionResult<ProdutoDTO> Put(int id, ProdutoDTO produtoDTO)
         {
+            var produtoID = _unitOfWork.ProdutoRepository.GetById(p => p.ProdutoId == id);
+
             if (id != produtoDTO.ProdutoId)
             {
-                _logger.LogWarning("Dados Invalidos..");
-                return BadRequest("Dado Invalidos..");
+                _logger.LogWarning($"O codigo do produto {produtoDTO.ProdutoId} esta diferento do corpo da requição {id} ");
+                return BadRequest($"O codigo do produto {produtoDTO.ProdutoId} esta diferento do corpo da requição {id} ");
+            }else if (produtoID is null)
+            {
+                _logger.LogWarning($"Codigo do produto {id} não encontrado.");
+                return BadRequest($"Codigo do produto {id} não encontrado.");
             }
 
            var produto =  _mapper.Map<ProdutoModel>(produtoDTO);
@@ -112,6 +119,37 @@ namespace ApiCatalogo.Controllers
 
             var produtosDTO = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);
             return Ok(produtosDTO);
+        }
+
+        [HttpPatch("{id:int}/UpdatePartial")]
+        public ActionResult<ProdutoDTOUpdateResponse> Patch(int id, JsonPatchDocument<ProdutoDTOUpdateRequest> patchProdutoDTO)
+        {
+            if (patchProdutoDTO is null || id <= 0)
+            {
+                _logger.LogWarning("Dados Invalidos..");
+                return BadRequest("Dados Invalidos...");
+            }
+            
+            var produto = _unitOfWork.ProdutoRepository.GetById(p => p.ProdutoId == id);
+
+            if(produto is null)
+            {
+                _logger.LogWarning($"Produto do codigo {id} não encontrado....");
+                return NotFound($"Produto do codigo {id} não encontrado.....");
+            }
+
+            var produtoUpdateRequest = _mapper.Map<ProdutoDTOUpdateRequest>(produto);
+
+            patchProdutoDTO.ApplyTo(produtoUpdateRequest, ModelState);
+            if(!ModelState.IsValid || !TryValidateModel(produtoUpdateRequest))
+            {
+                _logger.LogWarning("Dados Invalidos..");
+                return BadRequest(ModelState);
+            }
+
+            _mapper.Map(produtoUpdateRequest, produto);
+            _unitOfWork.ProdutoRepository.Update(produto);
+            return Ok(_mapper.Map<ProdutoDTOUpdateResponse>(produto));
         }
 
     }

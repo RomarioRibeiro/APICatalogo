@@ -276,3 +276,7 @@ D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Scalar.AspNetCore.dll
 D:\Temp\C#\APICatalogo\ApiCatalogo\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\AutoMapper.dll
 D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
