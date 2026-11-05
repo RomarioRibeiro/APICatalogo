@@ -1,5 +1,6 @@
 ﻿using ApiCatalogo.Context;
 using ApiCatalogo.Models;
+using ApiCatalogo.Pagination;
 
 namespace ApiCatalogo.Repository
 {
@@ -8,6 +9,15 @@ namespace ApiCatalogo.Repository
         public ProdutoRepository(AppDbContext appContext) : base(appContext)
         {
         }
+
+        public IEnumerable<ProdutoModel> GetProdutos(ProdutosParameters produtosParameters)
+        {
+            return GetAll()
+                   .OrderBy(p => p.Nome)
+                     .Skip((produtosParameters.PageNumber - 1) * produtosParameters.PageSize)
+                        .Take(produtosParameters.PageSize);
+        }
+
         public IEnumerable<ProdutoModel> GetProdutosPorCategoria(int id)
         {
             return GetAll().Where(p => p.CategoriaId == id);
