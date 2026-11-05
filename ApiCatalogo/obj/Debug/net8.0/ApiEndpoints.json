@@ -100,6 +100,37 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ApiCatalogo.Controllers.CategoriasController",
+    "Method": "GetCategoriasPaginada",
+    "RelativePath": "Categorias/paginetion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ApiCatalogo.DTOs.CategoriaDTO, ApiCatalogo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ApiCatalogo.Controllers.ProdutosController",
     "Method": "Get",
     "RelativePath": "Produtos",
