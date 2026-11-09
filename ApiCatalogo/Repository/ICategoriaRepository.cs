@@ -9,5 +9,7 @@ namespace ApiCatalogo.Repository
 
         PageList<CategoriaModel> GetCategorias(CategoriaParameters categoriaParameters);
 
+        PageList<CategoriaModel> GetCategoriasFiltroNome(CategoriaFiltroNome categoriaFiltroNome);
+
     }
 }

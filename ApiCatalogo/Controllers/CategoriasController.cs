@@ -111,6 +111,18 @@ namespace ApiCatalogo.Controllers
         {
             var categorias = _unitOfWork.CategoriaRepository.GetCategorias(categoriaParameters);
 
+            return ObterCategorias(categorias);
+        }
+
+        [HttpGet("filter/nome/pagination")]
+        public ActionResult<IEnumerable<CategoriaDTO>> GetCategoriaFiltroNome([FromQuery] CategoriaFiltroNome categoriaFiltroNome)
+        {
+            var categorias = _unitOfWork.CategoriaRepository.GetCategoriasFiltroNome(categoriaFiltroNome);
+            return ObterCategorias(categorias);
+        }
+
+        private ActionResult<IEnumerable<CategoriaDTO>> ObterCategorias(PageList<CategoriaModel> categorias)
+        {
             var metadata = new
             {
                 categorias.TotalCount,
