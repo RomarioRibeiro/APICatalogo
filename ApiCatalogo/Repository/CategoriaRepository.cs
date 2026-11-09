@@ -1,7 +1,7 @@
 ﻿using ApiCatalogo.Context;
 using ApiCatalogo.Models;
 using ApiCatalogo.Pagination;
-using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
 namespace ApiCatalogo.Repository
 {
@@ -11,17 +11,20 @@ namespace ApiCatalogo.Repository
         {
         }
 
-        public async Task<PageList<CategoriaModel>> GetCategoriasAsync(CategoriaParameters categoriaParameters)
+        public async Task<IPagedList<CategoriaModel>> GetCategoriasAsync(CategoriaParameters categoriaParameters)
         {
             var categorias = await GetAllAsync();
 
             var categoriaOrdenadas = categorias.OrderBy(c => c.Nome).AsQueryable();
 
-            var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categoriaOrdenadas, categoriaParameters.PageNumber, categoriaParameters.PageSize);
+            //var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categoriaOrdenadas, categoriaParameters.PageNumber, categoriaParameters.PageSize);
+
+            var categoriaOrdenada = await categoriaOrdenadas.ToPagedListAsync(categoriaParameters.PageNumber, categoriaParameters.PageSize);
+
             return categoriaOrdenada;
         }
 
-        public async Task<PageList<CategoriaModel>> GetCategoriasFiltroNomeAsync(CategoriaFiltroNome categoriaFiltroNome)
+        public async Task<IPagedList<CategoriaModel>> GetCategoriasFiltroNomeAsync(CategoriaFiltroNome categoriaFiltroNome)
         {
             var categorias = await GetAllAsync();
 
@@ -30,7 +33,10 @@ namespace ApiCatalogo.Repository
                 categorias = categorias.Where(c => c.Nome.Contains(categoriaFiltroNome.Nome));
             }
 
-            var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categorias.AsQueryable(), categoriaFiltroNome.PageNumber, categoriaFiltroNome.PageSize);
+            //var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categorias.AsQueryable(), categoriaFiltroNome.PageNumber, categoriaFiltroNome.PageSize);
+
+            var categoriaOrdenada = await categorias.ToPagedListAsync(categoriaFiltroNome.PageNumber, categoriaFiltroNome.PageSize); 
+
             return categoriaOrdenada;
         }
     }

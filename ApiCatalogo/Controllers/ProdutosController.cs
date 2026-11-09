@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using X.PagedList;
 
 
 namespace ApiCatalogo.Controllers
@@ -169,16 +170,16 @@ namespace ApiCatalogo.Controllers
             return ObterProdutosPaginados(produtos);
         }
 
-        private ActionResult<IEnumerable<ProdutoDTO>> ObterProdutosPaginados(PageList<ProdutoModel> produtos)
+        private ActionResult<IEnumerable<ProdutoDTO>> ObterProdutosPaginados(IPagedList<ProdutoModel> produtos)
         {
             var metadata = new
             {
-                produtos.TotalCount,
+                produtos.Count,
                 produtos.PageSize,
-                produtos.CurrentPage,
-                produtos.TotalPages,
-                produtos.HasNext,
-                produtos.HasPrevious
+                produtos.PageCount,
+                produtos.TotalItemCount,
+                produtos.HasNextPage,
+                produtos.HasPreviousPage
             };
             Response.Headers.Append("X-Pagination", JsonConvert.SerializeObject(metadata));
             var produtoDTO = _mapper.Map<IEnumerable<ProdutoDTO>>(produtos);

@@ -280,3 +280,6 @@ D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPat
 D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\JetBrains.Annotations.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\X.PagedList.dll
+D:\Temp\C#\APICatalogo\ApiCatalogo\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
