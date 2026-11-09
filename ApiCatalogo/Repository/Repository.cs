@@ -1,6 +1,7 @@
 ﻿using ApiCatalogo.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace ApiCatalogo.Repository
 {
@@ -14,13 +15,13 @@ namespace ApiCatalogo.Repository
             _context = appDbContext;
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-           return  _context.Set<T>().AsNoTracking().ToList();
+           return  await _context.Set<T>().AsNoTracking().ToListAsync();
         }
-        public T? GetById(Expression<Func<T, bool>> predicate)
+        public async Task<T>? GetByIdAsync(Expression<Func<T, bool>> predicate)
         {
-            return _context.Set<T>().AsNoTracking().FirstOrDefault(predicate);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
         }
         public T Create(T entity)
         {
@@ -42,6 +43,6 @@ namespace ApiCatalogo.Repository
             _context.Set<T>().Remove(entity);
            // _context.SaveChanges();
             return entity;
-        }        
+        }
     }
 }

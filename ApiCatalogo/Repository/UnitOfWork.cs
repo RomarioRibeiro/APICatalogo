@@ -30,9 +30,9 @@ namespace ApiCatalogo.Repository
             }
         }
 
-        public void Commit()
+        public async Task CommitAsycn()
         {
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
 
         public void Dispose() 

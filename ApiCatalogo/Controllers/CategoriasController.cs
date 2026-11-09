@@ -31,23 +31,23 @@ namespace ApiCatalogo.Controllers
 
         [HttpGet]
         [ServiceFilter(typeof(ApiLogginFilter))]
-        public ActionResult<IEnumerable<CategoriaDTO>> Get()
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> Get()
         {         
-            var categorias = _unitOfWork.CategoriaRepository.GetAll();
+            var categorias = await _unitOfWork.CategoriaRepository.GetAllAsync();
             if (categorias is null)
                 {
                 _logger.LogWarning($"Categorias não encontradas...");
                     return NotFound("Categorias não encontradas...");
                 }
-            var categoriasDTO = categorias.ToCategoriaDTOList();
+            var categoriasDTO =  categorias.ToCategoriaDTOList();
             return Ok(categoriasDTO);                  
         }
 
 
         [HttpGet("{id:int}", Name = "ObterCategorias")]
-        public ActionResult<CategoriaDTO> Get(int id)
+        public async  Task<ActionResult<CategoriaDTO>> Get(int id)
         {
-            var categoria =  _unitOfWork.CategoriaRepository.GetById(c => c.CategoriaId == id);
+            var categoria =  await _unitOfWork.CategoriaRepository.GetByIdAsync(c => c.CategoriaId == id);
             if (categoria is null)
             {
                 _logger.LogWarning($"Categoria com id={id} não encontrada...");
@@ -59,7 +59,7 @@ namespace ApiCatalogo.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(CategoriaDTO categoriaDTO)
+        public async Task<ActionResult> Post(CategoriaDTO categoriaDTO)
         {
             if (categoriaDTO is null)
             {
@@ -69,14 +69,14 @@ namespace ApiCatalogo.Controllers
 
             var categoria = categoriaDTO.ToCategoria();
             var categoriaCriada = _unitOfWork.CategoriaRepository.Create(categoria);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsycn();
 
             var categoriaCriadaDTO = categoria.ToCategoriaDTO();  
             return new CreatedAtRouteResult("ObterCategorias", new { id = categoriaCriadaDTO.CategoriaId }, categoriaCriadaDTO);
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, CategoriaDTO categoriaDTO)
+        public async Task<ActionResult> Put(int id, CategoriaDTO categoriaDTO)
         {
             if (id != categoriaDTO.CategoriaId)
             {
@@ -85,39 +85,39 @@ namespace ApiCatalogo.Controllers
             }
             var categoria = categoriaDTO.ToCategoria();
             var categoriaAlterada = _unitOfWork.CategoriaRepository.Update(categoria);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsycn();
 
             var categoriaAlteradaDTO = categoria.ToCategoriaDTO();
             return Ok(categoriaAlteradaDTO);
         }
 
         [HttpDelete("{id:int}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var categoria = _unitOfWork.CategoriaRepository.GetById(c => c.CategoriaId == id);
+            var categoria = await _unitOfWork.CategoriaRepository.GetByIdAsync(c => c.CategoriaId == id);
             if (categoria is null)
             {
                 _logger.LogWarning($"Categoria com id={id} não encontrada...");
                 return NotFound($"Categoria com id: {id} não encontrada...");
             }
             _unitOfWork.CategoriaRepository.Delete(categoria);
-            _unitOfWork.Commit();
+            await _unitOfWork.CommitAsycn();
             var categoriaDTO = categoria.ToCategoriaDTO();
             return NoContent(); //Ok(categoria);  
         }
 
         [HttpGet("paginetion")]
-        public ActionResult<IEnumerable<CategoriaDTO>> GetCategoriasPaginada([FromQuery] CategoriaParameters categoriaParameters)
+        public async  Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategoriasPaginada([FromQuery] CategoriaParameters categoriaParameters)
         {
-            var categorias = _unitOfWork.CategoriaRepository.GetCategorias(categoriaParameters);
+            var categorias = await _unitOfWork.CategoriaRepository.GetCategoriasAsync(categoriaParameters);
 
             return ObterCategorias(categorias);
         }
 
         [HttpGet("filter/nome/pagination")]
-        public ActionResult<IEnumerable<CategoriaDTO>> GetCategoriaFiltroNome([FromQuery] CategoriaFiltroNome categoriaFiltroNome)
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategoriaFiltroNome([FromQuery] CategoriaFiltroNome categoriaFiltroNome)
         {
-            var categorias = _unitOfWork.CategoriaRepository.GetCategoriasFiltroNome(categoriaFiltroNome);
+            var categorias = await _unitOfWork.CategoriaRepository.GetCategoriasFiltroNomeAsync(categoriaFiltroNome);
             return ObterCategorias(categorias);
         }
 
@@ -138,6 +138,7 @@ namespace ApiCatalogo.Controllers
             var categoriaDto = _mapper.Map<IEnumerable<CategoriaDTO>>(categorias);
             return Ok(categoriaDto);
         }
+
     }
 }
     

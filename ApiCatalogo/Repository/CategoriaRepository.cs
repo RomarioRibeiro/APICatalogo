@@ -11,23 +11,26 @@ namespace ApiCatalogo.Repository
         {
         }
 
-        public PageList<CategoriaModel> GetCategorias(CategoriaParameters categoriaParameters)
+        public async Task<PageList<CategoriaModel>> GetCategoriasAsync(CategoriaParameters categoriaParameters)
         {
-            var categorias = GetAll().OrderBy(c => c.CategoriaId).AsQueryable();
-            var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categorias, categoriaParameters.PageNumber, categoriaParameters.PageSize);
+            var categorias = await GetAllAsync();
+
+            var categoriaOrdenadas = categorias.OrderBy(c => c.Nome).AsQueryable();
+
+            var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categoriaOrdenadas, categoriaParameters.PageNumber, categoriaParameters.PageSize);
             return categoriaOrdenada;
         }
 
-        public PageList<CategoriaModel> GetCategoriasFiltroNome(CategoriaFiltroNome categoriaFiltroNome)
+        public async Task<PageList<CategoriaModel>> GetCategoriasFiltroNomeAsync(CategoriaFiltroNome categoriaFiltroNome)
         {
-            var categorias = GetAll().AsQueryable();
+            var categorias = await GetAllAsync();
 
             if (!string.IsNullOrEmpty(categoriaFiltroNome.Nome))
             {
                 categorias = categorias.Where(c => c.Nome.Contains(categoriaFiltroNome.Nome));
             }
 
-            var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categorias, categoriaFiltroNome.PageNumber, categoriaFiltroNome.PageSize);
+            var categoriaOrdenada = PageList<CategoriaModel>.ToPagedList(categorias.AsQueryable(), categoriaFiltroNome.PageNumber, categoriaFiltroNome.PageSize);
             return categoriaOrdenada;
         }
     }
